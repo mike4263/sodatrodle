@@ -170,7 +170,15 @@ function GameBoard({ onShowShare, onStatsUpdate }) {
       hints.push(`Caffeine: ${answer.caffeine ? 'Yes' : 'No'}`);
     }
     
-    if (guessCount >= 5 && answer.year) {
+    if (guessCount >= 5) {
+      if (feedback.sugarType === 'correct') {
+        hints.push(`Sugar Type: ${answer.sugarType}`);
+      } else if (feedback.sugarType === 'partial') {
+        hints.push(`Sugar type is similar`);
+      }
+    }
+    
+    if (guessCount >= 6 && answer.year) {
       hints.push(`Introduced: ${answer.year}`);
     }
     

@@ -8,6 +8,7 @@ function GuessRow({ guess, isRevealed }) {
           <div className="attribute-cell"></div>
           <div className="attribute-cell"></div>
           <div className="attribute-cell"></div>
+          <div className="attribute-cell"></div>
         </div>
       </div>
     );
@@ -20,6 +21,7 @@ function GuessRow({ guess, isRevealed }) {
     { label: 'Flavor', value: soda?.flavor, status: feedback?.flavor },
     { label: 'Color', value: soda?.color, status: feedback?.color },
     { label: 'Caffeine', value: soda?.caffeine ? 'Yes' : 'No', status: feedback?.caffeine },
+    { label: 'Sugar', value: soda?.sugarType || '—', status: feedback?.sugarType },
   ];
 
   const nameStatus = feedback?.name || 'pending';

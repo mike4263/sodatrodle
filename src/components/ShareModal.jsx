@@ -20,9 +20,10 @@ function ShareModal({ shareData, onClose }) {
       const flavorStatus = feedback.flavor === 'correct' ? '🟩' : feedback.flavor === 'partial' ? '🟨' : '⬜';
       const colorStatus = feedback.color === 'correct' ? '🟩' : feedback.color === 'partial' ? '🟨' : '⬜';
       const caffeineStatus = feedback.caffeine === 'correct' ? '🟩' : '⬜';
+      const sugarStatus = feedback.sugarType === 'correct' ? '🟩' : feedback.sugarType === 'partial' ? '🟨' : '⬜';
       
       text += `Guess ${index + 1}: ${guess.soda.name}\n`;
-      text += `  Name: ${nameStatus} Brand: ${brandStatus} Flavor: ${flavorStatus} Color: ${colorStatus} Caffeine: ${caffeineStatus}\n`;
+      text += `  Name: ${nameStatus} Brand: ${brandStatus} Flavor: ${flavorStatus} Color: ${colorStatus} Caffeine: ${caffeineStatus} Sugar: ${sugarStatus}\n`;
     });
     
     if (!won) {

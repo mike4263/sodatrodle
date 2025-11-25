@@ -11,6 +11,7 @@ export function compareSodas(guess, answer) {
     flavor: compareAttribute(guess.flavor, answer.flavor),
     color: compareAttribute(guess.color, answer.color),
     caffeine: guess.caffeine === answer.caffeine ? 'correct' : 'wrong',
+    sugarType: compareAttribute(guess.sugarType, answer.sugarType),
   };
   
   return feedback;
