@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react';
 import GameBoard from './components/GameBoard.jsx';
 import StatsModal from './components/StatsModal.jsx';
 import ShareModal from './components/ShareModal.jsx';
+import { Analytics } from "@vercel/analytics/react";
 import { getTodayString } from './utils/dateUtils.js';
 import { getStats } from './utils/storage.js';
 
