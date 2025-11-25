@@ -255,6 +255,7 @@ body {
   display: flex;
   gap: 10px;
   margin-bottom: 20px;
+  position: relative;
 }
 
 .guess-input {
@@ -269,6 +270,82 @@ body {
 .guess-input:focus {
   outline: none;
   border-color: var(--correct-color);
+}
+
+/* Soda Selector Styles */
+.soda-selector {
+  flex: 1;
+  position: relative;
+}
+
+.soda-selector-dropdown {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  right: 0;
+  margin-top: 4px;
+  background-color: white;
+  border: 2px solid var(--border-color);
+  border-radius: 4px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  max-height: 300px;
+  overflow-y: auto;
+  z-index: 1000;
+  animation: fadeIn 0.2s;
+}
+
+.soda-selector-option {
+  padding: 12px 16px;
+  cursor: pointer;
+  border-bottom: 1px solid #f0f0f0;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  transition: background-color 0.2s;
+}
+
+.soda-selector-option:last-child {
+  border-bottom: none;
+}
+
+.soda-selector-option:hover,
+.soda-selector-option.selected {
+  background-color: #f5f5f5;
+}
+
+.soda-option-name {
+  font-weight: bold;
+  font-size: 1rem;
+  color: var(--text-color);
+}
+
+.soda-option-name mark {
+  background-color: var(--partial-color);
+  color: white;
+  padding: 0 2px;
+  border-radius: 2px;
+  font-weight: bold;
+}
+
+.soda-option-brand {
+  font-size: 0.85rem;
+  color: #666;
+}
+
+.soda-selector-no-results {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  right: 0;
+  margin-top: 4px;
+  padding: 12px 16px;
+  background-color: white;
+  border: 2px solid var(--border-color);
+  border-radius: 4px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  color: #666;
+  font-style: italic;
+  z-index: 1000;
 }
 
 .submit-button {
@@ -667,6 +744,18 @@ body {
 
   .input-section {
     flex-direction: column;
+    position: relative;
+  }
+
+  .soda-selector-dropdown {
+    position: fixed;
+    max-height: 200px;
+    z-index: 2000;
+  }
+
+  .soda-selector-no-results {
+    position: fixed;
+    z-index: 2000;
   }
 
   .keyboard-row {

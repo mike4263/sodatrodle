@@ -2,6 +2,7 @@ import { useState, useEffect, useCallback } from 'react';
 import GuessRow from './GuessRow.jsx';
 import Keyboard from './Keyboard.jsx';
 import HintSystem from './HintSystem.jsx';
+import SodaSelector from './SodaSelector.jsx';
 import { getTodayString } from '../utils/dateUtils.js';
 import { getDailyAnswer, validateGuess, compareSodas, isGameWon } from '../utils/gameLogic.js';
 import { getGameState, saveGameState, updateStats } from '../utils/storage.js';
@@ -264,22 +265,22 @@ function GameBoard({ onShowShare, onStatsUpdate }) {
       </div>
 
       {gameStatus === 'playing' && (
-      <div className="input-section">
-        <input
-          type="text"
-          className="guess-input"
+      <div className="input-section" onKeyDown={(e) => {
+        if (e.key === 'Enter' && currentGuess.trim() && gameStatus === 'playing') {
+          e.preventDefault();
+          handleGuessSubmit();
+        }
+      }}>
+        <SodaSelector
           value={currentGuess}
-          onChange={(e) => setCurrentGuess(e.target.value)}
-          onKeyDown={(e) => {
-            if (e.key === 'Enter') {
-              handleGuessSubmit();
-            }
+          onChange={(value) => setCurrentGuess(value)}
+          onSelect={(value) => {
+            setCurrentGuess(value);
+            setError('');
           }}
-          placeholder="Enter soda name..."
-          autoFocus
-          maxLength={30}
-          aria-label="Enter your soda guess"
-          aria-describedby={error ? "error-message" : undefined}
+          placeholder="Type to search sodas..."
+          disabled={gameStatus !== 'playing'}
+          guesses={guesses}
         />
         <button 
           className="submit-button"
