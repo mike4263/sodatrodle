@@ -66,6 +66,7 @@ function App() {
           onClose={() => setShowShare(false)}
         />
       )}
+      <Analytics />
     </div>
   );
 }
