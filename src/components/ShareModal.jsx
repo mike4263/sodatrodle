@@ -21,9 +21,10 @@ function ShareModal({ shareData, onClose }) {
       const colorStatus = feedback.color === 'correct' ? '🟩' : feedback.color === 'partial' ? '🟨' : '⬜';
       const caffeineStatus = feedback.caffeine === 'correct' ? '🟩' : '⬜';
       const sugarStatus = feedback.sugarType === 'correct' ? '🟩' : feedback.sugarType === 'partial' ? '🟨' : '⬜';
+      const countryStatus = feedback.countryOfOrigin === 'correct' ? '🟩' : feedback.countryOfOrigin === 'partial' ? '🟨' : '⬜';
       
       text += `Guess ${index + 1}: ${guess.soda.name}\n`;
-      text += `  Name: ${nameStatus} Brand: ${brandStatus} Flavor: ${flavorStatus} Color: ${colorStatus} Caffeine: ${caffeineStatus} Sugar: ${sugarStatus}\n`;
+      text += `  Name: ${nameStatus} Brand: ${brandStatus} Flavor: ${flavorStatus} Color: ${colorStatus} Caffeine: ${caffeineStatus} Sugar: ${sugarStatus} Country: ${countryStatus}\n`;
     });
     
     if (!won) {

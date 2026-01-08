@@ -179,8 +179,12 @@ function GameBoard({ onShowShare, onStatsUpdate }) {
       }
     }
     
-    if (guessCount >= 6 && answer.year) {
-      hints.push(`Introduced: ${answer.year}`);
+    if (guessCount >= 6) {
+      if (feedback.countryOfOrigin === 'correct') {
+        hints.push(`Country: ${answer.countryOfOrigin}`);
+      } else if (feedback.countryOfOrigin === 'partial') {
+        hints.push(`Country is similar`);
+      }
     }
     
     return hints;

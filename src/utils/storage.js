@@ -1,6 +1,7 @@
 const STORAGE_KEY = 'sodatrodle';
 const STATS_KEY = `${STORAGE_KEY}_stats`;
 const GAME_STATE_KEY = `${STORAGE_KEY}_gameState`;
+const THEME_KEY = `${STORAGE_KEY}_theme`;
 
 /**
  * Get stored statistics
@@ -128,6 +129,29 @@ export function clearGameState() {
     localStorage.removeItem(GAME_STATE_KEY);
   } catch (e) {
     console.error('Failed to clear game state:', e);
+  }
+}
+
+/**
+ * Get stored theme preference
+ */
+export function getTheme() {
+  try {
+    const theme = localStorage.getItem(THEME_KEY);
+    return theme || 'light'; // Default to light mode
+  } catch (e) {
+    return 'light';
+  }
+}
+
+/**
+ * Save theme preference
+ */
+export function saveTheme(theme) {
+  try {
+    localStorage.setItem(THEME_KEY, theme);
+  } catch (e) {
+    console.error('Failed to save theme:', e);
   }
 }
 

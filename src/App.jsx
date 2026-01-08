@@ -4,16 +4,21 @@ import StatsModal from './components/StatsModal.jsx';
 import ShareModal from './components/ShareModal.jsx';
 import { Analytics } from "@vercel/analytics/react";
 import { getTodayString } from './utils/dateUtils.js';
-import { getStats } from './utils/storage.js';
+import { getStats, getTheme, saveTheme } from './utils/storage.js';
 
 function App() {
   const [showStats, setShowStats] = useState(false);
   const [showShare, setShowShare] = useState(false);
   const [shareData, setShareData] = useState(null);
   const [stats, setStats] = useState(null);
+  const [theme, setTheme] = useState('light');
 
   useEffect(() => {
     setStats(getStats());
+    // Load theme preference
+    const savedTheme = getTheme();
+    setTheme(savedTheme);
+    document.documentElement.setAttribute('data-theme', savedTheme);
   }, []);
 
   const handleShowStats = () => {
@@ -30,11 +35,28 @@ function App() {
     setStats(getStats());
   };
 
+  const toggleTheme = () => {
+    const newTheme = theme === 'light' ? 'dark' : 'light';
+    setTheme(newTheme);
+    saveTheme(newTheme);
+    document.documentElement.setAttribute('data-theme', newTheme);
+  };
+
   return (
     <div className="app">
       <header className="app-header">
-        <h1>Sodatrodle</h1>
+        <div className="header-left">
+          <img src="/logo.png" alt="Sodatrodle Logo" className="header-logo" />
+        </div>
         <div className="header-buttons">
+          <button 
+            className="icon-button theme-toggle" 
+            onClick={toggleTheme}
+            aria-label={`Switch to ${theme === 'light' ? 'dark' : 'light'} mode`}
+            title={`Switch to ${theme === 'light' ? 'dark' : 'light'} mode`}
+          >
+            {theme === 'light' ? '🌙' : '☀️'}
+          </button>
           <button 
             className="icon-button" 
             onClick={handleShowStats}
